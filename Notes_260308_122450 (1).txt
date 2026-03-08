@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8 Mart</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+background:black;
+color:white;
+font-family:Arial, Helvetica, sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+overflow:hidden;
+text-align:center;
+}
+
+#countdown{
+font-size:120px;
+font-weight:bold;
+}
+
+#message{
+display:none;
+font-size:35px;
+padding:20px;
+animation:fade 2s ease-in-out;
+}
+
+@keyframes fade{
+from{opacity:0; transform:scale(0.5)}
+to{opacity:1; transform:scale(1)}
+}
+
+.flower{
+position:fixed;
+top:-50px;
+font-size:30px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="countdown">3</div>
+
+<div id="message">
+<h1>🌸 8 Mart Kadınlar Günün Kutlu Olsun 🌸</h1>
+
+<p>Seni çok seviyorum ❤️</p>
+
+<p>
+“Dünyayı güzelleştiren şey çiçekler değil,  
+senin gibi kalbi güzel kadınlardır.”
+</p>
+
+</div>
+
+<script>
+
+let count = 3
+let countdown = document.getElementById("countdown")
+let message = document.getElementById("message")
+
+let timer = setInterval(()=>{
+
+count--
+countdown.innerText = count
+
+if(count === 0){
+clearInterval(timer)
+
+setTimeout(()=>{
+countdown.style.display="none"
+message.style.display="block"
+startFlowers()
+},1000)
+
+}
+
+},1000)
+
+function startFlowers(){
+
+setInterval(()=>{
+
+let flower = document.createElement("div")
+flower.classList.add("flower")
+
+flower.innerHTML="🌸"
+
+flower.style.left=Math.random()*100+"vw"
+flower.style.animationDuration=(Math.random()*3+3)+"s"
+
+document.body.appendChild(flower)
+
+setTimeout(()=>{
+flower.remove()
+},6000)
+
+},300)
+
+}
+
+</script>
+
+</body>
+</html>
